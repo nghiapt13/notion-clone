@@ -215,7 +215,9 @@ export const getSearch = query({
         if (!identity) {
             throw new Error("Not authenticated");
         }
+
         const userId = identity.subject;
+
         const documents = await ctx.db
             .query("documents")
             .withIndex("by_user", (q) => q.eq("userId", userId))
@@ -347,7 +349,7 @@ export const removeCoverImage = mutation({
         const document = await ctx.db.patch(args.id, {
             coverImage: undefined,
         });
-        
+
         return document;
 
     }

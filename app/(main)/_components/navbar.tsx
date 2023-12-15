@@ -28,13 +28,13 @@ export const Navbar = ({
     });
 
     if (document === undefined) {
-        return(
+        return (
             <nav className="bg-background dark:bg-[#1f1f1f] px-3 py-2 w-full flex items-center justify-between">
-            <Title.Skeleton />
-            <div className="flex items-center gap-x-2">
-                <Menu.Skeletion/>
-            </div>
-        </nav>
+                <Title.Skeleton />
+                <div className="flex items-center gap-x-2">
+                    <Menu.Skeletion />
+                </div>
+            </nav>
         )
     }
 
@@ -57,12 +57,12 @@ export const Navbar = ({
                         <Publish
                             initialData={document}
                         />
-                        <Menu documentId={document._id}/>
+                        <Menu documentId={document._id} />
                     </div>
                 </div>
             </nav>
-            {document.isArchived&&(
-                <Banner documentId={document._id}/>
+            {document.isArchived && (
+                <Banner documentId={document._id} />
             )}
         </>
     )
