@@ -1,23 +1,26 @@
 "use client";
+
 import { useMutation, useQuery } from "convex/react";
+import dynamic from "next/dynamic";
+import { useMemo } from "react";
+
 import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { Toolbar } from "@/components/toobar";
 import { Cover } from "@/components/cover";
 import { Skeleton } from "@/components/ui/skeleton";
-import dynamic from "next/dynamic";
-import { useMemo } from "react";
 
-interface DocumentIdPageProp {
+interface DocumentIdPageProps {
     params: {
-        documentId: Id<"documents">
+        documentId: Id<"documents">;
     };
 };
 
 const DocumentIdPage = ({
     params
-}: DocumentIdPageProp) => {
+}: DocumentIdPageProps) => {
     const Editor = useMemo(() => dynamic(() => import("@/components/editor"), { ssr: false }), []);
+
     const document = useQuery(api.documents.getById, {
         documentId: params.documentId
     });
@@ -28,8 +31,8 @@ const DocumentIdPage = ({
         update({
             id: params.documentId,
             content
-        })
-    }
+        });
+    };
 
     if (document === undefined) {
         return (
@@ -44,7 +47,7 @@ const DocumentIdPage = ({
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 
     if (document === null) {

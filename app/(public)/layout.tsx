@@ -1,8 +1,10 @@
 const PublicLayout = ({
     children
-}: { children: React.ReactNode }) => {
+}: {
+    children: React.ReactNode;
+}) => {
     return (
-        <div className="h-full dark:bg-[#1f1f1f]">
+        <div className="h-full dark:bg-[#1F1F1F]">
             {children}
         </div>
     );
